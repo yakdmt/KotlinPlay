@@ -13,7 +13,9 @@ import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState
 import xyz.yakdmt.kotlinplay.R
 import xyz.yakdmt.kotlinplay.model.Article
 
-class ArticlesActivity : ArticlesView, MvpLceViewStateActivity<SwipeRefreshLayout, List<Article>, ArticlesView, ArticlesPresenter>(), SwipeRefreshLayout.OnRefreshListener  {
+class ArticlesActivity : ArticlesView,
+        MvpLceViewStateActivity<SwipeRefreshLayout, List<Article>, ArticlesView, ArticlesPresenter>(),
+        SwipeRefreshLayout.OnRefreshListener  {
 
 
     var adapter: ArticlesAdapter? = null

@@ -3,6 +3,7 @@ package xyz.yakdmt.kotlinplay.injection.component
 import dagger.Component
 import xyz.yakdmt.kotlinplay.MyApplication
 import xyz.yakdmt.kotlinplay.injection.modules.AndroidModule
+import xyz.yakdmt.kotlinplay.model.Repository
 import xyz.yakdmt.kotlinplay.ui.main.ArticlesPresenter
 import javax.inject.Singleton
 
@@ -16,5 +17,7 @@ interface ApplicationComponent {
     fun inject(application: MyApplication)
 
     fun inject(articlesPresenter: ArticlesPresenter)
+
+    fun inject(repository: Repository)
 
 }

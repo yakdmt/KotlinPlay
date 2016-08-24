@@ -5,8 +5,12 @@ import android.content.Context
 import android.location.LocationManager
 import dagger.Module
 import dagger.Provides
+import retrofit.GsonConverterFactory
+import retrofit.Retrofit
+import retrofit.RxJavaCallAdapterFactory
 import xyz.yakdmt.kotlinplay.injection.ForApplication
 import xyz.yakdmt.kotlinplay.model.Repository
+import xyz.yakdmt.kotlinplay.network.NetworkService
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -39,6 +43,17 @@ class AndroidModule(private val application: Application) {
     @Singleton
     fun provideRepository(): Repository {
         return Repository()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNetworkService(): NetworkService {
+        var retrofit = Retrofit.Builder()
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("https://api.nytimes.com/svc/search/v2/")
+                .build()
+        return retrofit.create(NetworkService::class.java)
     }
 
     @Provides
