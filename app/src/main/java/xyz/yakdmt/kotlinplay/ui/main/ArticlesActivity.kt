@@ -10,7 +10,6 @@ import android.view.MenuItem
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateActivity
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState
-import xyz.yakdmt.kotlinplay.MyApplication
 import xyz.yakdmt.kotlinplay.R
 import xyz.yakdmt.kotlinplay.model.Article
 
@@ -22,7 +21,6 @@ class ArticlesActivity : ArticlesView, MvpLceViewStateActivity<SwipeRefreshLayou
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        MyApplication.graph.inject(this)
         assert(contentView != null)
         retainInstance = true
         contentView.setOnRefreshListener(this)

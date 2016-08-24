@@ -6,6 +6,7 @@ import android.location.LocationManager
 import dagger.Module
 import dagger.Provides
 import xyz.yakdmt.kotlinplay.injection.ForApplication
+import xyz.yakdmt.kotlinplay.model.Repository
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -32,6 +33,12 @@ class AndroidModule(private val application: Application) {
     @Singleton
     fun provideLocationManager(): LocationManager {
         return application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepository(): Repository {
+        return Repository()
     }
 
     @Provides

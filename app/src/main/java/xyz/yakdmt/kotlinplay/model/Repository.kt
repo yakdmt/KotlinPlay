@@ -6,4 +6,8 @@ package xyz.yakdmt.kotlinplay.model
 
 class Repository {
 
+    fun getArticles(): List<Article> {
+        return listOf<Article>(Article("article1","http://i.imgur.com/DvpvklR.png"),
+                Article("article2","http://i.imgur.com/DvpvklR.png"))
+    }
 }

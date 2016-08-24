@@ -1,7 +1,8 @@
 package xyz.yakdmt.kotlinplay.ui.main
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter
-import xyz.yakdmt.kotlinplay.model.Article
+import xyz.yakdmt.kotlinplay.MyApplication
+import xyz.yakdmt.kotlinplay.model.Repository
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -10,16 +11,19 @@ import javax.inject.Named
  */
 class ArticlesPresenter : MvpBasePresenter<ArticlesView>() {
 
-    @field:[Inject Named("something")]
-    lateinit var something: String
+    @Inject
+    lateinit var repository: Repository
 
     @field:[Inject Named("somethingElse")]
     lateinit var somethingElse: String
 
+    init {
+        MyApplication.graph.inject(this)
+    }
+
     fun loadArticles(pullToRefresh: Boolean) {
 
-       view!!.setData(listOf<Article>(Article("article1","http://i.imgur.com/DvpvklR.png"),
-               Article("article2","http://i.imgur.com/DvpvklR.png")))
+       view!!.setData(repository.getArticles())
 
     }
 
