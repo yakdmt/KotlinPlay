@@ -1,6 +1,5 @@
 package xyz.yakdmt.kotlinplay.network
 
-import android.util.Log
 import com.google.gson.*
 import xyz.yakdmt.kotlinplay.model.Article
 import java.lang.reflect.Type
@@ -8,19 +7,27 @@ import java.lang.reflect.Type
 /**
  * Created by yakdmt on 25/08/16.
  */
-class ArticleDeserializer : JsonDeserializer<Article> {
+class ArticleDeserializer : JsonDeserializer<List<Article>> {
 
     @Throws(JsonParseException::class)
-    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Article {
-        Log.d("Test/Deserializer", "Using a custom deserializer for Login WS")
+    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): List<Article> {
 
         val gson = Gson()
-        var article : Article
+        val jsonResponse = json.asJsonObject.getAsJsonObject("response") ?: return listOf()
+        val jsonDocs = jsonResponse.getAsJsonArray("docs") ?: return listOf()
+        val result : MutableList<Article> = mutableListOf()
+        for (jsonArticle in jsonDocs) {
+            val article = gson.fromJson(jsonArticle, Article::class.java)
+            if (article!=null){
+                result.add(article)
+            }
+         }
+
         try {
-            article = gson.fromJson(json, Article::class.java)
+            //article = gson.fromJson(json, Article::class.java)
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        return Article("test","test")
+        return listOf(Article("test","test"))
     }
 }
