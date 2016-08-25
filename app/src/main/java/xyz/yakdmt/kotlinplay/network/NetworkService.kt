@@ -12,4 +12,7 @@ interface NetworkService {
     @GET("articlesearch.json")
     fun getArticles(): Observable<List<Article>>
 
+    @GET("articlesearch.json")
+    fun getArticle(): Observable<Article>
+
 }

@@ -29,4 +29,12 @@ class Repository {
 
     }
 
+    fun test(onAction: Action1<in Article>, onError: Action1<Throwable>) : Subscription {
+        return networkService.getArticle()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onAction, onError)
+
+    }
+
 }

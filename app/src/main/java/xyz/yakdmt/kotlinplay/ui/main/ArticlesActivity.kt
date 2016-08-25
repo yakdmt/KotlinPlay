@@ -64,6 +64,7 @@ class ArticlesActivity : ArticlesView,
 
     override fun loadData(pullToRefresh: Boolean) {
         presenter.loadArticles(pullToRefresh)
+
     }
 
     override fun getErrorMessage(e: Throwable?, pullToRefresh: Boolean): String {

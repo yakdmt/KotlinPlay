@@ -30,7 +30,11 @@ class ArticlesPresenter : MvpBasePresenter<ArticlesView>() {
         }, Action1 { error ->
             view!!.showError(error, pullToRefresh)
         })
-
+        repository.test(Action1 { result ->
+            view!!.showContent()
+        }, Action1 { error ->
+            view!!.showError(error, pullToRefresh)
+        })
     }
 
 }
